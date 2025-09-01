@@ -1,8 +1,9 @@
 import { Box, Heading, Text, Badge, VStack ,Button,HStack} from '@chakra-ui/react';
-import type {PostProps } from './postTypes';
+import type { PostProps } from '../postTypes';
 
 
 const Post: React.FC<PostProps> = ({postData,handleDeletePost}) => {
+  console.log("Post" + postData.id + "ReRendered")
   return (
     <Box
       maxW="600px"
