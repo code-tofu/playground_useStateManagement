@@ -1,9 +1,15 @@
 import { useState } from "react";
-import { Box, Button, Input, Flex,Textarea } from "@chakra-ui/react";
+import { Box, Button, Input, Flex, Textarea } from "@chakra-ui/react";
+import { addPost, loadAllPosts } from "@/data/actions/postActions";
+import { useDispatch, useSelector } from "react-redux";
+import type { PostStore } from "@/store";
 
 export default function PostInput() {
     const [newPostTitle, setNewPostTitle] = useState<string>("");
     const [newPostBody, setNewPostBody] = useState<string>("");
+
+    const currentMaxId = useSelector((state: PostStore) => state.posts.length);
+    const dispatch = useDispatch();
 
     return (
         <Box
@@ -27,8 +33,26 @@ export default function PostInput() {
                 marginBottom={"5"}
             />
             <Flex gap="4" justify="space-between">
-                <Button colorPalette="blue">Post</Button>
-                <Button colorPalette="orange" variant="outline">
+                <Button
+                    colorPalette="blue"
+                    onClick={() =>
+                        dispatch(
+                            addPost({
+                                userId: 1,
+                                id: currentMaxId + 1,
+                                title: newPostTitle,
+                                body: newPostBody,
+                            })
+                        )
+                    }
+                >
+                    Post
+                </Button>
+                <Button
+                    colorPalette="orange"
+                    variant="outline"
+                    onClick={() => dispatch(loadAllPosts())}
+                >
                     Load From Database
                 </Button>
             </Flex>

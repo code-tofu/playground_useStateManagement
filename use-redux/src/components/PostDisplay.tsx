@@ -1,19 +1,25 @@
+import { useDispatch } from "react-redux";
 import type { Post } from "../types";
-import { Text, Badge, Card, CloseButton, Flex } from "@chakra-ui/react";
+import { Badge, Card, CloseButton, Flex } from "@chakra-ui/react";
+import { deletePost } from "../data/actions/postActions";
 
-export default function Post({ userId, id, title, body }: Post) {
-    return (
-        <Card.Root maxWidth={"lg"}>
+
+export default function PostDisplay({ userId, id, title, body }: Post) {
+    
+    const dispatch = useDispatch();
+
+    return (    
+        <Card.Root maxWidth={"lg"} minWidth={"sm"}>
             <Card.Body gap="2">
                 <Flex gap="4" justify="space-between">
                     <Badge w="fit-content" colorPalette="blue">
                         Post ID: {id}
                     </Badge>
-                    <CloseButton variant="subtle" size="xs"/>
+                    <CloseButton variant="subtle" size="xs" onClick={() => dispatch(deletePost(id))}/>
                 </Flex>
                 <Card.Title mt="2">{title}</Card.Title>
                 <Card.Description>
-                    <Text whiteSpace="pre-wrap">{body}</Text>
+                    {body}
                 </Card.Description>
             </Card.Body>
             <Card.Footer justifyContent="flex-end">

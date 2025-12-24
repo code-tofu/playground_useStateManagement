@@ -1,11 +1,17 @@
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import { SimpleGrid, Flex, Center, VStack, Heading } from "@chakra-ui/react";
-import data from "../db.json";
-import Post from "./components/Post";
+import PostDisplay from "./components/PostDisplay";
 import PostInput from "./components/PostInput";
+import { useSelector } from "react-redux";
+import type { PostStore } from "./store";
+// import data from "../db.json";
+
 
 function AppLayout() {
+    
+    const posts = useSelector((state: PostStore) => state.posts);
+
     return (
         <Center>
             <VStack>
@@ -29,8 +35,8 @@ function AppLayout() {
                 </div>
                 <PostInput />
                 <SimpleGrid columns={2} gap="40px">
-                    {data.posts.map((post) => (
-                        <Post key={post.id} {...post} />
+                    {posts.map((post) => (
+                        <PostDisplay key={post.id} {...post} />
                     ))}
                 </SimpleGrid>
             </VStack>

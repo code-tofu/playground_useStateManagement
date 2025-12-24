@@ -9,3 +9,15 @@ Using ChakraUI
   - https://github.com/chakra-ui/chakra-ui/blob/main/sandbox/vite-ts/src/main.tsx
   - https://chakra-ui.com/docs/theming/customization/overview
   - https://github.com/chakra-ui/chakra-ui/blob/main/sandbox/vite-ts/src/main.tsx
+
+Enums in Typescript
+- https://www.typescriptlang.org/docs/handbook/enums.html
+
+# Legacy-Redux
+createStore(reducer, preloadedState?, enhancer?)
+https://redux.js.org/api/createstore
+
+
+create actions
+create reducer
+create store from reducer
