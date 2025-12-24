@@ -17,7 +17,10 @@ Enums in Typescript
 createStore(reducer, preloadedState?, enhancer?)
 https://redux.js.org/api/createstore
 
-
 create actions
 create reducer
 create store from reducer
+
+# Redux-Logger
+https://www.npmjs.com/package/redux-logger
+https://www.npmjs.com/package/@types/redux-logger
