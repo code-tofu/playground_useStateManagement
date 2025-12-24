@@ -4,13 +4,14 @@ import { SimpleGrid, Flex, Center, VStack, Heading } from "@chakra-ui/react";
 import PostDisplay from "./components/PostDisplay";
 import PostInput from "./components/PostInput";
 import { useSelector } from "react-redux";
-import type { PostStore } from "./store";
-// import data from "../db.json";
+import type { PostsStore } from "./store";
+import type { IPost } from "./types";
+import type {RootState} from "./rootReducer"
 
 
 function AppLayout() {
     
-    const posts = useSelector((state: PostStore) => state.posts);
+    const posts :IPost[]  = useSelector((state: RootState) => state.posts.posts);
 
     return (
         <Center>

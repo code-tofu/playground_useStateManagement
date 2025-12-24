@@ -1,11 +1,14 @@
-import { PostActions } from "../actions/postActionTypes";
-import type { PostActionsTypes } from "../actions/postActionTypes";
-import { initialState } from "@/store";
+import { PostActions } from "../actions/actionTypes";
+import type { PostActionsTypes } from "../actions/actionTypes";
 import savedPosts from "../../../db.json";
-import type { Post } from "../../types";
-import type { PostStore } from "@/store";
+import type { IPost } from "../../types";
+import type { PostsStore } from "@/store";
 
-export function postsReducer(state: PostStore = initialState, action: PostActionsTypes): PostStore {
+export const initialPostsState = {
+    posts: [] as IPost[],
+};
+
+export function postsReducer(state: PostsStore = initialPostsState, action: PostActionsTypes): PostsStore {
     switch (action.type) {
         case PostActions.ADD_POST:
             return { ...state, posts: [...state.posts, action.payload] };
@@ -18,6 +21,6 @@ export function postsReducer(state: PostStore = initialState, action: PostAction
     }
 }
 
-function getSavedPosts(): Post[] {
+function getSavedPosts(): IPost[] {
     return savedPosts.posts;
 }

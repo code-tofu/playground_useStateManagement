@@ -1,15 +1,27 @@
 // import { createStore } from 'redux'
-import { applyMiddleware, legacy_createStore } from 'redux'
-import rootReducer from './rootReducer'
-import type { Post } from './types'
-import logger from 'redux-logger'
+import { applyMiddleware, legacy_createStore } from "redux";
+import rootReducer from "./rootReducer";
+import type { IPost, CommentMap } from "./types";
+import logger from "redux-logger";
+import { composeWithDevTools } from 'redux-devtools-extension'
 
-export const initialState = {
-    posts: [] as Post[],
-}
 
-export type PostStore = {
-    posts: Post[]
-}
+export type PostsStore = {
+    posts: IPost[];
+};
 
-export const store = legacy_createStore(rootReducer, initialState,applyMiddleware(logger))
+export type CommentsStore = {
+    comments: CommentMap;
+};
+
+const composedEnhancer = composeWithDevTools(
+    applyMiddleware(logger)
+)
+
+//may not need initial state if initial state is already defined in reducer?
+// export const store = legacy_createStore(rootReducer,initialState, applyMiddleware(logger))
+export const store = legacy_createStore(
+    rootReducer,
+    undefined,
+    composedEnhancer
+);

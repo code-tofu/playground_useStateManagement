@@ -1,4 +1,4 @@
-import type { Post } from '../../types';
+import type { IPost } from '../../types';
 
 // export enum PostsActions {
 //     LOAD_ALL = 'posts/LOAD_ALL',
@@ -12,7 +12,7 @@ import type { Post } from '../../types';
 export const PostActions = {
     LOAD_ALL: 'posts/LOAD_ALL',
     ADD_POST: 'posts/ADD_POST',
-    DELETE_POST: 'posts/DELETE_POST'
+    DELETE_POST: 'posts/DELETE_POST',
 } as const
 
 export interface LoadAllActionType {
@@ -22,7 +22,7 @@ export interface LoadAllActionType {
 
 export interface AddPostActionType {
     type: typeof PostActions.ADD_POST,
-    payload: Post
+    payload: IPost
 }
 
 export interface DeletePostActionType {
@@ -30,5 +30,18 @@ export interface DeletePostActionType {
     payload: number; //id
 }
 
+
 export type PostActionsTypes = LoadAllActionType | AddPostActionType | DeletePostActionType;
+
+
+export const CommentActions = {
+    LOAD_COMMENTS: 'posts/LOAD_COMMENTS'
+} 
+
+export interface LoadCommentsByPostActionType {
+    type: typeof CommentActions.LOAD_COMMENTS;
+    payload: number; //id
+}
+
+export type CommentsActionsTypes = LoadCommentsByPostActionType;
 

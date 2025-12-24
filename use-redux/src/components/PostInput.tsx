@@ -2,13 +2,13 @@ import { useState } from "react";
 import { Box, Button, Input, Flex, Textarea } from "@chakra-ui/react";
 import { addPost, loadAllPosts } from "@/data/actions/postActions";
 import { useDispatch, useSelector } from "react-redux";
-import type { PostStore } from "@/store";
+import type { PostsStore } from "@/store";
 
 export default function PostInput() {
     const [newPostTitle, setNewPostTitle] = useState<string>("");
     const [newPostBody, setNewPostBody] = useState<string>("");
 
-    const currentMaxId = useSelector((state: PostStore) => state.posts.length);
+    const currentMaxId = useSelector((state: PostsStore) => state.posts.length);
     const dispatch = useDispatch();
 
     return (
