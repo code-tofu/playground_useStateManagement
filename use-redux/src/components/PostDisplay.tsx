@@ -1,19 +1,21 @@
 import { useDispatch } from "react-redux";
 import type { IPost } from "../types";
 import { Badge, Card, CloseButton, Button, Flex } from "@chakra-ui/react";
-import { deletePost, loadCommentsByPost } from "../data/actions/postActions";
+import { deletePost,  } from "../data/actions/postActions";
 import CommentsList from "./CommentsList";
 import { useState } from "react";
+import { loadCommmentsByPostId } from "../data/actions/commentActions";
+import type { AppDispatch } from "../store";
 
 export default function PostDisplay({ userId, id, title, body }: IPost) {
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
     const [showComments, setShowComments] = useState(false);
     const [commentsLoaded, setCommentsLoaded] = useState(false);
 
     const toggleComments = () => {
         setShowComments(!showComments);
         if(!commentsLoaded){
-            dispatch(loadCommentsByPost(id));
+            dispatch(loadCommmentsByPostId(id));
             setCommentsLoaded(true);
         }
     };
@@ -21,7 +23,6 @@ export default function PostDisplay({ userId, id, title, body }: IPost) {
     return (
         <Card.Root maxWidth={"lg"} minWidth={"sm"}>
             <Card.Body gap="2">
-                comment
                 <Flex gap="4" justify="space-between">
                     <Badge w="fit-content" colorPalette="blue">
                         Post ID: {id}

@@ -1,17 +1,25 @@
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
-import { SimpleGrid, Flex, Center, VStack, Heading } from "@chakra-ui/react";
+import {
+    SimpleGrid,
+    Flex,
+    Center,
+    VStack,
+    Heading,
+    Spinner,
+} from "@chakra-ui/react";
 import PostDisplay from "./components/PostDisplay";
 import PostInput from "./components/PostInput";
 import { useSelector } from "react-redux";
 import type { PostsStore } from "./store";
 import type { IPost } from "./types";
-import type {RootState} from "./rootReducer"
-
+import type { RootState } from "./rootReducer";
 
 function AppLayout() {
-    
-    const posts :IPost[]  = useSelector((state: RootState) => state.posts.posts);
+    const posts: IPost[] = useSelector((state: RootState) => state.posts.posts);
+    const isLoading: boolean = useSelector(
+        (state: RootState) => state.posts.loading
+    );
 
     return (
         <Center>
@@ -35,11 +43,20 @@ function AppLayout() {
                     </VStack>
                 </div>
                 <PostInput />
-                <SimpleGrid columns={2} gap="40px">
-                    {posts.map((post) => (
-                        <PostDisplay key={post.id} {...post} />
-                    ))}
-                </SimpleGrid>
+                {isLoading && (
+                    <Spinner
+                        color="red.500"
+                        css={{ "--spinner-track-color": "colors.gray.200" }}
+                        size="xl"
+                    />
+                )}
+                {!isLoading && posts.length > 0 && (
+                    <SimpleGrid columns={2} gap="40px">
+                        {posts.map((post) => (
+                            <PostDisplay key={post.id} {...post} />
+                        ))}
+                    </SimpleGrid>
+                )}
             </VStack>
         </Center>
     );

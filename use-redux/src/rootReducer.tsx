@@ -1,7 +1,7 @@
 import { commentsReducer } from "./data/reducers/commentsReducer";
 import { postsReducer } from "./data/reducers/postReducer";
 import { combineReducers } from "redux";
-import type { IPost, CommentMap } from "./types";
+// import type { IPost, CommentMap } from "./types";
 // import { combineReducers } from "@reduxjs/toolkit";
 
 /* if only single reducer, cannot use combine reducers - will return postReducer instead of a state

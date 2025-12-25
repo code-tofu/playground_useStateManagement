@@ -1,15 +1,23 @@
 import { useState } from "react";
-import { Box, Button, Input, Flex, Textarea } from "@chakra-ui/react";
+import {
+    Box,
+    Button,
+    Input,
+    Flex,
+    Textarea,
+    NumberInput,
+} from "@chakra-ui/react";
 import { addPost, loadAllPosts } from "@/data/actions/postActions";
 import { useDispatch, useSelector } from "react-redux";
-import type { PostsStore } from "@/store";
+import type { PostsStore, AppDispatch } from "@/store";
 
 export default function PostInput() {
     const [newPostTitle, setNewPostTitle] = useState<string>("");
     const [newPostBody, setNewPostBody] = useState<string>("");
+    const [loadLimit, setLoadLimit] = useState<number>(10);
 
     const currentMaxId = useSelector((state: PostsStore) => state.posts.length);
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
 
     return (
         <Box
@@ -48,13 +56,25 @@ export default function PostInput() {
                 >
                     Post
                 </Button>
-                <Button
-                    colorPalette="orange"
-                    variant="outline"
-                    onClick={() => dispatch(loadAllPosts())}
-                >
-                    Load From Database
-                </Button>
+                <Flex>
+                    <NumberInput.Root
+                        maxW="75px"
+                        value={loadLimit.toString()}
+                        min={1} max={100}
+                        onValueChange={(e) => setLoadLimit(parseInt(e.value))}
+                    >
+                        <NumberInput.Control />
+                        <NumberInput.Input />
+                    </NumberInput.Root>
+
+                    <Button
+                        colorPalette="orange"
+                        variant="outline"
+                        onClick={() => dispatch(loadAllPosts(loadLimit))}
+                    >
+                        Load From Database
+                    </Button>
+                </Flex>
             </Flex>
         </Box>
     );

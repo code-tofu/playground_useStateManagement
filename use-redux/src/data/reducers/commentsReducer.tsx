@@ -3,12 +3,12 @@ import {
     type CommentsActionsTypes,
 } from "../actions/actionTypes";
 import { type CommentsStore } from "@/store";
-import data from "../../../db.json";
-import type { IComment } from "@/types";
 
 
 export const initialCommentsState = {
     comments: {},
+    loading: false,
+    error: "",
 };
 
 export function commentsReducer(
@@ -16,19 +16,25 @@ export function commentsReducer(
     action: CommentsActionsTypes
 ): CommentsStore {
     switch (action.type) {
-        case CommentActions.LOAD_COMMENTS:
+        case CommentActions.LOAD_COMMENTS_REQUESTED:
+            return { ...state, loading: true };
+        case CommentActions.LOAD_COMMENTS_SUCCESS:
             return {
                 ...state,
-                comments:
-                {...state.comments,
-                [action.payload]: getCommentsByPostId(action.payload),
-                }
+                loading: false,
+                comments: { ...state.comments, [action.payload.id]: action.payload.comments},
+            };
+        case CommentActions.LOAD_COMMENTS_ERROR:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload as string,
             };
         default:
             return state;
     }
 }
 
-function getCommentsByPostId(postId: number): IComment[] {
-    return data.comments.filter((comment) => comment.postId === postId);
-}
+// function getCommentsByPostId(postId: number): IComment[] {
+//     return data.comments.filter((comment) => comment.postId === postId);
+// }

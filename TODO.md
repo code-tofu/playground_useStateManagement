@@ -1,10 +1,11 @@
 Front End State Managers:
-- React-Context-Reducer
+- Lgeacy-Redux
 - Redux-Sagas/RTK
 - Zustand
 - Tanstack RQ
 
 - axios
+- React-Context-Reducer
 
 BackEnd Options:
 - json-server

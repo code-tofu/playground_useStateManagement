@@ -13,6 +13,8 @@ Using ChakraUI
 Enums in Typescript
 - https://www.typescriptlang.org/docs/handbook/enums.html
 
+https://stackoverflow.com/questions/66020820/npm-when-to-use-force-and-legacy-peer-deps
+
 # Legacy-Redux
 createStore(reducer, preloadedState?, enhancer?)
 https://redux.js.org/api/createstore
@@ -21,6 +23,17 @@ create actions
 create reducer
 create store from reducer
 
+https://redux.js.org/tutorials/fundamentals/part-4-store#configuring-the-store
+**useSelector expects the ROOT STATE type, not the reducer’s state type.**
+
+[...state.posts, ...payload]
+
+
 # Redux-Logger
 https://www.npmjs.com/package/redux-logger
 https://www.npmjs.com/package/@types/redux-logger
+
+# Redux-Thunks
+https://redux.js.org/usage/writing-logic-thunks#writing-thunks
+
+https://react-redux.js.org/using-react-redux/usage-with-typescript#define-root-state-and-dispatch-types

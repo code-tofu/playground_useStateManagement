@@ -1,9 +1,16 @@
 import type { IComment } from "../types";
-import { Timeline, Avatar } from "@chakra-ui/react";
-import {colours} from "../constants"
+import { Timeline, Avatar, Badge } from "@chakra-ui/react";
+import { colours } from "../constants";
 
-
-function CommentItem({comment, num} : {comment:IComment, num: number}) {
+function CommentItem({
+    comment,
+    num,
+    id,
+}: {
+    comment: IComment;
+    num: number;
+    id: number;
+}) {
     return (
         <Timeline.Item>
             <Timeline.Connector>
@@ -15,10 +22,11 @@ function CommentItem({comment, num} : {comment:IComment, num: number}) {
                 </Timeline.Indicator>
             </Timeline.Connector>
             <Timeline.Content textStyle="sm">
-                <Timeline.Title>{comment.name}</Timeline.Title>
-                <Timeline.Description />
-                {comment.body}
-                <Timeline.Description />
+                <Timeline.Title>
+                    {comment.name}
+                    <Badge>{id}</Badge>
+                </Timeline.Title>
+                <Timeline.Description>{comment.body}</Timeline.Description>
             </Timeline.Content>
         </Timeline.Item>
     );
