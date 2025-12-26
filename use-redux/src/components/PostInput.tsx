@@ -7,16 +7,16 @@ import {
     Textarea,
     NumberInput,
 } from "@chakra-ui/react";
-import { addPost, loadAllPosts } from "@/data/actions/postActions";
-import { useDispatch, useSelector } from "react-redux";
-import type { PostsStore, AppDispatch } from "@/store";
+import { addNewPost, loadAllPosts } from "@/data/actions/postActions";
+import { useDispatch } from "react-redux";
+import type { AppDispatch } from "@/store";
 
 export default function PostInput() {
     const [newPostTitle, setNewPostTitle] = useState<string>("");
     const [newPostBody, setNewPostBody] = useState<string>("");
     const [loadLimit, setLoadLimit] = useState<number>(10);
 
-    const currentMaxId = useSelector((state: PostsStore) => state.posts.length);
+    // const currentMaxId = useSelector((state: PostsStore) => state.posts.length);
     const dispatch = useDispatch<AppDispatch>();
 
     return (
@@ -45,9 +45,8 @@ export default function PostInput() {
                     colorPalette="blue"
                     onClick={() =>
                         dispatch(
-                            addPost({
+                            addNewPost({
                                 userId: 1,
-                                id: currentMaxId + 1,
                                 title: newPostTitle,
                                 body: newPostBody,
                             })

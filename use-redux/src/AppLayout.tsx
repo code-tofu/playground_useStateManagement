@@ -11,7 +11,6 @@ import {
 import PostDisplay from "./components/PostDisplay";
 import PostInput from "./components/PostInput";
 import { useSelector } from "react-redux";
-import type { PostsStore } from "./store";
 import type { IPost } from "./types";
 import type { RootState } from "./rootReducer";
 
@@ -38,7 +37,7 @@ function AppLayout() {
                                 alt="React logo"
                             />
                         </Flex>
-                        <Heading>use Redux-Sagas</Heading>
+                        <Heading>use Redux-Thunks</Heading>
                         <Heading size="md">Vite + React</Heading>
                     </VStack>
                 </div>

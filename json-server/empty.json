@@ -1,0 +1,48 @@
+{
+  "posts": [
+    {
+      "id": "c76c",
+      "userId": 1,
+      "title": "Test",
+      "body": "Test"
+    },
+    {
+      "id": "4938",
+      "userId": 1,
+      "title": "Test2",
+      "body": "Test2\n"
+    },
+    {
+      "id": "b3f8",
+      "userId": 1,
+      "title": "test3",
+      "body": "Test3\n"
+    },
+    {
+      "id": "7d4c",
+      "userId": 1,
+      "title": "TEst 4`",
+      "body": "etst"
+    },
+    {
+      "id": "534f",
+      "userId": 1,
+      "title": "Test 5",
+      "body": "Test 5"
+    },
+    {
+      "id": "af77",
+      "userId": 1,
+      "title": "Test 5",
+      "body": "Test 5"
+    },
+    {
+      "id": "86fc",
+      "userId": 1,
+      "title": "",
+      "body": ""
+    }
+  ],
+  "comments": [],
+  "users": []
+}

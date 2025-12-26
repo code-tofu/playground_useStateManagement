@@ -1,6 +1,8 @@
 Front End State Managers:
 - Lgeacy-Redux
-- Redux-Sagas/RTK
+- Redux-Thunks
+- Redux-Toolkit
+- Redux-Sagas
 - Zustand
 - Tanstack RQ
 
