@@ -13,6 +13,8 @@ export type PostsStore = {
     error: string
 };
 
+// having all comments in one object will cause all comment components to re-render when updated
+
 export type CommentsStore = {
     comments: CommentMap;
     loading: boolean,
@@ -23,7 +25,7 @@ const composedEnhancer = composeWithDevTools(
     applyMiddleware(logger,thunk)
 )
 
-//may not need initial state if initial state is already defined in reducer?
+// may not need initial state if initial state is already defined in reducer?
 // export const store = legacy_createStore(rootReducer,initialState, applyMiddleware(logger))
 export const store = legacy_createStore(
     rootReducer,

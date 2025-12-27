@@ -16,7 +16,9 @@ export const loadCommentsByPostRequested = (id: number) => {
         type: CommentActions.LOAD_COMMENTS_REQUESTED,
         payload: id,
     };
-};export const loadCommentsByPostSuccess = (id: number, data: IComment[]) => {
+};
+
+export const loadCommentsByPostSuccess = (id: number, data: IComment[]) => {
     return {
         type: CommentActions.LOAD_COMMENTS_SUCCESS,
         payload: {
@@ -50,4 +52,44 @@ export const loadCommmentsByPostId = (id: number): AppThunk  => {
     };
 };
 
+export const addCommentRequested = (id: number, data: IComment[]) => {
+    return {
+        type: CommentActions.ADD_COMMENT_REQUESTED,
+        payload: {
+            id: id,
+            comments: data
+        } as CommentPayload
+    };
+};
+
+export const addCommentSuccess = (id: number) => {
+    return {
+        type: CommentActions.ADD_COMMENT_SUCCESS,
+        payload: id
+};
+}
+
+export const addCommentError = (error: string) => {
+    return {
+        type: CommentActions.ADD_COMMENT_ERROR,
+        payload: error,
+    };
+};
+
+export const addNewComment = (postId: number, comment: IComment): AppThunk  => {
+    return  async function (dispatch:AppDispatch) {
+        dispatch(addCommentRequested(postId, [comment]));
+        await axios
+            .post(`${JSON_SERVER}/comments`, comment)
+            .then((response) => {
+                console.log(`Comment Created with ID ${response.data.id}`);
+                dispatch(addCommentSuccess(postId));
+            })
+            .catch((error) => {
+                // error.message is the error message
+                dispatch(addCommentError(error.message));
+            });
+        dispatch(loadCommmentsByPostId(postId));
+    };
+};
 

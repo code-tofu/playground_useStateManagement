@@ -78,6 +78,9 @@ export const CommentActions = {
     LOAD_COMMENTS_REQUESTED: "comments/LOAD_COMMENTS_REQUESTED",
     LOAD_COMMENTS_SUCCESS: "comments/LOAD_COMMENTS_SUCCESS",
     LOAD_COMMENTS_ERROR: "comments/LOAD_COMMENTS_ERROR",
+    ADD_COMMENT_REQUESTED: "comments/ADD_COMMENT_REQUESTED",
+    ADD_COMMENT_SUCCESS: "comments/ADD_COMMENT_SUCCESS",
+    ADD_COMMENT_ERROR: "comments/ADD_COMMENT_ERROR",
 } as const;
 
 export interface LoadCommentsByPostRequestActionType {
@@ -94,6 +97,25 @@ export interface LoadCommentsByPostErrorActionType {
     type: typeof CommentActions.LOAD_COMMENTS_ERROR;
     payload: string; //errormsg
 }
+
+export interface AddNewCommentRequestActionType {
+    type: typeof CommentActions.ADD_COMMENT_REQUESTED;
+    payload: number; //id
+}
+
+export interface AddNewCommentSuccessActionType {
+    type: typeof CommentActions.ADD_COMMENT_SUCCESS;
+    payload: CommentPayload;
+}
+
+export interface AddNewCommentErrorActionType {
+    type: typeof CommentActions.ADD_COMMENT_ERROR;
+    payload: string; //errormsg
+}
+
+
+
+
 
 export type CommentsActionsTypes =
     | LoadCommentsByPostRequestActionType

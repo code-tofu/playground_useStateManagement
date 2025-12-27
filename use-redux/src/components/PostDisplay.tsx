@@ -1,24 +1,37 @@
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import type { IPost } from "../types";
 import { Badge, Card, CloseButton, Button, Flex } from "@chakra-ui/react";
 import { deletePost } from "../data/actions/postActions";
 import CommentsList from "./CommentsList";
 import { useState } from "react";
 import { loadCommmentsByPostId } from "../data/actions/commentActions";
-import type { AppDispatch } from "../store";
+import type { AppDispatch, RootState } from "../store";
+import CommentInput from "./CommentInput";
+
 
 export default function PostDisplay({ userId, id, title, body }: IPost) {
     const dispatch = useDispatch<AppDispatch>();
     const [showComments, setShowComments] = useState(false);
+    const [isAddComments, setIsAddComments] = useState(false);
     const [commentsLoaded, setCommentsLoaded] = useState(false);
 
     const toggleComments = () => {
+        setIsAddComments(false);
         setShowComments(!showComments);
         if (!commentsLoaded && id !== undefined) {
             dispatch(loadCommmentsByPostId(id));
             setCommentsLoaded(true);
         }
     };
+
+    const toggleAddComments = () => {
+        setIsAddComments(!isAddComments);
+        setShowComments(false);
+    };
+
+    const isLoading: boolean = useSelector(
+        (state: RootState) => state.comments.loading
+    );
 
     if (!id) {
         return (
@@ -54,21 +67,25 @@ export default function PostDisplay({ userId, id, title, body }: IPost) {
                         variant="outline"
                         colorPalette={showComments ? "orange" : "green"}
                         onClick={() => toggleComments()}
+                        disabled={isLoading}
                     >
                         {showComments ? "Hide Comments" : "Show Comments"}
+                    </Button>
+                    <Button
+                        size="xs"
+                        variant="subtle"
+                        colorPalette="yellow"
+                        onClick={() => toggleAddComments()}
+                    >
+                        Add Comment
                     </Button>
                 </Flex>
             </Card.Footer>
             <Card.Footer>
                 {showComments && <CommentsList postId={id} />}
+                {isAddComments && <CommentInput postId={id} />}
             </Card.Footer>
         </Card.Root>
     );
 }
 
-// const mockPost: Post = {
-//     id: 1,
-//     title: "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-//     body: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
-//     userId: 1,
-// };

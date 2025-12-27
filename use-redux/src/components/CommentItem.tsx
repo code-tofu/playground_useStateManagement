@@ -9,7 +9,7 @@ function CommentItem({
 }: {
     comment: IComment;
     num: number;
-    id: number;
+    id?: number;
 }) {
     return (
         <Timeline.Item>
@@ -24,7 +24,7 @@ function CommentItem({
             <Timeline.Content textStyle="sm">
                 <Timeline.Title>
                     {comment.name}
-                    <Badge>{id}</Badge>
+                    <Badge>{id ? id : "NA"}</Badge>
                 </Timeline.Title>
                 <Timeline.Description>{comment.body}</Timeline.Description>
             </Timeline.Content>

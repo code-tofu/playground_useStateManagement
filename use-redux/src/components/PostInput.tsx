@@ -8,13 +8,17 @@ import {
     NumberInput,
 } from "@chakra-ui/react";
 import { addNewPost, loadAllPosts } from "@/data/actions/postActions";
-import { useDispatch } from "react-redux";
-import type { AppDispatch } from "@/store";
+import { useDispatch, useSelector } from "react-redux";
+import type { AppDispatch, RootState } from "@/store";
 
 export default function PostInput() {
     const [newPostTitle, setNewPostTitle] = useState<string>("");
     const [newPostBody, setNewPostBody] = useState<string>("");
     const [loadLimit, setLoadLimit] = useState<number>(10);
+
+    const isLoading: boolean = useSelector(
+        (state: RootState) => state.posts.loading
+    );
 
     // const currentMaxId = useSelector((state: PostsStore) => state.posts.length);
     const dispatch = useDispatch<AppDispatch>();
@@ -70,6 +74,8 @@ export default function PostInput() {
                         colorPalette="orange"
                         variant="outline"
                         onClick={() => dispatch(loadAllPosts(loadLimit))}
+                        loading={isLoading}
+                        disabled={isLoading}
                     >
                         Load From Database
                     </Button>
