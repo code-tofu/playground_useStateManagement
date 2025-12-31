@@ -1,26 +1,5 @@
 {
-  "posts": [
-    {
-      "id": "4769",
-      "userId": 1,
-      "title": "Test",
-      "body": "Test"
-    },
-    {
-      "id": "fedf",
-      "userId": 1,
-      "title": "Test",
-      "body": "Test"
-    }
-  ],
-  "comments": [
-    {
-      "id": "35bc",
-      "postId": "4769",
-      "name": "Test",
-      "email": "Test",
-      "body": "Test"
-    }
-  ],
+  "posts": [],
+  "comments": [],
   "users": []
 }
