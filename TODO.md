@@ -7,11 +7,13 @@ Front End State Managers:
 - Zustand
 - Tanstack RQ
 
-- axios
+- Axios
 - React-Context-Reducer
+- create-actions
 
 BackEnd Options:
 - json-server
 - Spring Data Rest
 - Express JS
 - Flask
+

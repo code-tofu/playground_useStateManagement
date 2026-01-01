@@ -120,5 +120,8 @@ export interface AddNewCommentErrorActionType {
 export type CommentsActionsTypes =
     | LoadCommentsByPostRequestActionType
     | LoadCommentsByPostSuccessActionType
-    | LoadCommentsByPostErrorActionType;
+    | LoadCommentsByPostErrorActionType
+    | AddNewCommentRequestActionType
+    | AddNewCommentSuccessActionType
+    | AddNewCommentErrorActionType
 //Discriminated unions only work when the discriminant is a literal type (i.e. CommentActions as const)

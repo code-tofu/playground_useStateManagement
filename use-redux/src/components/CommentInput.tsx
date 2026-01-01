@@ -4,15 +4,20 @@ import { useState } from "react";
 import type { AppDispatch, RootState } from "@/store";
 import { addNewComment } from "../data/actions/commentActions";
 
-function CommentInput({ postId }: { postId: number }) {
+function CommentInput({
+    postId,
+    handlePostCommentToggle,
+}: {
+    postId: number;
+    handlePostCommentToggle: () => void;
+}) {
     const [newCommentName, setNewCommentName] = useState<string>("");
     const [newCommentEmail, setNewCommentEmail] = useState<string>("");
     const [newCommentBody, setNewCommentBody] = useState<string>("");
     const dispatch = useDispatch<AppDispatch>();
     const isLoading: boolean = useSelector(
-            (state: RootState) => state.comments.loading
-        );
-    
+        (state: RootState) => state.comments.loading
+    );
 
     return (
         <VStack minWidth={"sm"}>
@@ -37,7 +42,7 @@ function CommentInput({ postId }: { postId: number }) {
             />
             <Button
                 colorPalette="blue"
-                onClick={() =>
+                onClick={() => {
                     dispatch(
                         addNewComment(postId, {
                             postId: postId,
@@ -45,14 +50,16 @@ function CommentInput({ postId }: { postId: number }) {
                             email: newCommentEmail,
                             body: newCommentBody,
                         })
-                    )
-                }
+                    );
+                    handlePostCommentToggle();
+                }}
                 loading={isLoading}
                 disabled={isLoading}
-            >Post Comment</Button>
+            >
+                Post Comment
+            </Button>
         </VStack>
     );
 }
 
 export default CommentInput;
-

@@ -33,6 +33,11 @@ export default function PostDisplay({ userId, id, title, body }: IPost) {
         (state: RootState) => state.comments.loading
     );
 
+    const handlePostCommentToggle = () => {
+        setShowComments(true);
+        setIsAddComments(false);
+    }
+
     if (!id) {
         return (
             <Card.Root maxWidth={"lg"} minWidth={"sm"}>
@@ -83,7 +88,7 @@ export default function PostDisplay({ userId, id, title, body }: IPost) {
             </Card.Footer>
             <Card.Footer>
                 {showComments && <CommentsList postId={id} />}
-                {isAddComments && <CommentInput postId={id} />}
+                {isAddComments && <CommentInput postId={id} handlePostCommentToggle={handlePostCommentToggle} />}
             </Card.Footer>
         </Card.Root>
     );

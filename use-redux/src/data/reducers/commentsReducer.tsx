@@ -30,10 +30,18 @@ export function commentsReducer(
                 loading: false,
                 error: action.payload as string,
             };
+        case CommentActions.ADD_COMMENT_REQUESTED:
+            return { ...state, loading: true};
+        case CommentActions.ADD_COMMENT_SUCCESS:
+            return { ...state, loading: false};
+        case CommentActions.ADD_COMMENT_ERROR:
+            return { ...state, loading: false, error: action.payload };
         default:
             return state;
     }
 }
+
+// Add comment state not really required because state is refreshed from server on success. Adding will imply local update only without thunks
 
 // function getCommentsByPostId(postId: number): IComment[] {
 //     return data.comments.filter((comment) => comment.postId === postId);

@@ -15,8 +15,10 @@ Enums in Typescript
 
 https://stackoverflow.com/questions/66020820/npm-when-to-use-force-and-legacy-peer-deps
 
-https://redux.js.org/style-guide/
-https://redux-toolkit.js.org/usage/migrating-to-modern-redux
+destructuring : is used to rename a property, not to define its type.
+
+https://github.com/axios/axios?tab=readme-ov-file#handling-errors
+
 
 # Legacy-Redux
 createStore(reducer, preloadedState?, enhancer?)
@@ -39,7 +41,11 @@ https://www.npmjs.com/package/@types/redux-logger
 https://redux.js.org/usage/writing-logic-thunks#writing-thunks
 https://react-redux.js.org/using-react-redux/usage-with-typescript#define-root-state-and-dispatch-types
 
-# Redux RTK
+# Redux RTK-Thunk
+https://redux.js.org/style-guide/
+https://redux-toolkit.js.org/usage/usage-with-typescript
+https://redux-toolkit.js.org/usage/migrating-to-modern-redux
+
 https://redux-toolkit.js.org/usage/migrating-to-modern-redux
 - create initial state
 - create slice and reducers in slice
@@ -47,3 +53,6 @@ https://redux-toolkit.js.org/usage/migrating-to-modern-redux
 - export reducers, actions, thunks
 - create store from reducer
 - you can return the state directly or mutuate the state directly which will be handled by immer
+
+https://redux-toolkit.js.org/api/configureStore
+https://redux-toolkit.js.org/api/createAsyncThunk#type

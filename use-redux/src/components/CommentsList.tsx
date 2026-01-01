@@ -15,6 +15,7 @@ function CommentsList({postId} : {postId:number}) {
             {(!isLoading && comments && comments.length>0) && comments.map((comment: IComment, index) => (
                 <CommentItem key={comment.id} comment={comment} num = {index + 1} id={comment.id} />
             ))}
+            {(!isLoading && comments && comments.length === 0) && <div> No Comments Available</div>}
         </Timeline.Root>
     );
 }
