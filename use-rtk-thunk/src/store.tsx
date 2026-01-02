@@ -3,6 +3,7 @@ import postReducer from "./data/slices/postSlice";
 import commentsReducer from "./data/slices/commentSlice";
 import logger from "redux-logger";
 
+// RTK automatically adds the thunk middleware to the store setup
 export const store = configureStore({
     reducer: {
         posts: postReducer,

@@ -12,7 +12,7 @@ import PostDisplay from "./components/PostDisplay";
 import PostInput from "./components/PostInput";
 import { useSelector } from "react-redux";
 import type { IPost } from "./types";
-import type { RootState } from "./rootReducer";
+import type { RootState } from "./store";
 
 function AppLayout() {
     const posts: IPost[] = useSelector((state: RootState) => state.posts.posts);
