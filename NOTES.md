@@ -56,3 +56,49 @@ https://redux-toolkit.js.org/usage/migrating-to-modern-redux
 
 https://redux-toolkit.js.org/api/configureStore
 https://redux-toolkit.js.org/api/createAsyncThunk#type
+
+
+# RTK-Query
+https://redux-toolkit.js.org/rtk-query/api/created-api/hooks#uselazyquery
+https://redux-toolkit.js.org/rtk-query/usage/queries
+https://redux-toolkit.js.org/rtk-query/usage/automated-refetching
+
+``` json
+  api: {
+    queries: {
+      'getAllPosts({"limit":10})': {
+        status: 'fulfilled',
+        endpointName: 'getAllPosts',
+        requestId: 'A4Pe3ADMT0XN-1MFqGtnW',
+        originalArgs: {
+          limit: 10
+        },
+        startedTimeStamp: 1767361538382,
+        data: [],
+        fulfilledTimeStamp: 1767361538471
+      },
+      'loadCommentsByPostId({"id":"1"})': {
+        status: 'fulfilled',
+        endpointName: 'loadCommentsByPostId',
+        requestId: 'LTR-na9kBpxuJRIBDxAmy',
+        originalArgs: {
+          id: '1'
+        },
+        startedTimeStamp: 1767361605127,
+        data: [],
+        fulfilledTimeStamp: 1767361605160
+      },
+      'loadCommentsByPostId({"id":"2"})': {
+        status: 'fulfilled',
+        endpointName: 'loadCommentsByPostId',
+        requestId: 'qWTM6MWXOcV5E038PRMyE',
+        originalArgs: {
+          id: '2'
+        },
+        startedTimeStamp: 1767361616136,
+        data: [],
+        fulfilledTimeStamp: 1767361616168
+      }
+    },
+
+```

@@ -1,0 +1,57 @@
+import { Input, Textarea, VStack, Button } from "@chakra-ui/react";
+import { useState } from "react";
+import { useAddNewCommentMutation } from "../data/slices/apiSlice";
+
+function CommentInput({ postId,handlePostCommentToggle }: { postId: number, handlePostCommentToggle: () => void}) {
+    const [newCommentName, setNewCommentName] = useState<string>("");
+    const [newCommentEmail, setNewCommentEmail] = useState<string>("");
+    const [newCommentBody, setNewCommentBody] = useState<string>("");
+
+    const [addNewComment, { isLoading }] =
+    useAddNewCommentMutation();
+
+    return (
+        <VStack minWidth={"sm"}>
+            <Input
+                value={newCommentName}
+                onChange={(e) => setNewCommentName(e.target.value)}
+                placeholder="Name"
+                marginBottom={"5"}
+            />
+            <Input
+                value={newCommentEmail}
+                onChange={(e) => setNewCommentEmail(e.target.value)}
+                type="email"
+                placeholder="Email"
+                marginBottom={"5"}
+            />
+            <Textarea
+                value={newCommentBody}
+                onChange={(e) => setNewCommentBody(e.target.value)}
+                placeholder="Comment"
+                marginBottom={"5"}
+            />
+            <Button
+                colorPalette="blue"
+                onClick={() => {
+                    addNewComment(
+                        {
+                        postId: postId,
+                        name: newCommentName,
+                        email: newCommentEmail,
+                        body: newCommentBody,
+                        }
+                    )
+                    handlePostCommentToggle()
+                }
+                }
+                loading={isLoading}
+                disabled={isLoading}
+            >
+                Post Comment
+            </Button>
+        </VStack>
+    );
+}
+
+export default CommentInput;
